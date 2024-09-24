@@ -32,11 +32,13 @@ runs:
       with:
         node-version: 20
 
+    - shell: sh
+      run: |
+        npm --prefix ${{ github.action_path }} ci
+
     - uses: changesets/action@3de3850952bec538fde60aac71731376e57b9b57 # v1.4.8
       with:
-        publish: |
-          npm --prefix ${{ github.action_path }} ci
-          node ${{ github.action_path }}/index.js
+        publish: node ${{ github.action_path }}/index.js
         commit: ${{ inputs.commit && inputs.commit || 'Version Action' }}
         title: ${{ inputs.title && inputs.title || 'Release Action' }}
         setupGitUser: ${{ inputs.setupGitUser }}

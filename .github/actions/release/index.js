@@ -7,11 +7,17 @@ const main = async () => {
   await exec("sed", ["-i", "-E", "s|^/?dist/?||g", ".gitignore"]);
   // remove unnecessary files
   await exec("rm", "-rf", ".github/workflows");
+  await exec("git", ["status"])
 
   const { version } = JSON.parse(await readFile("./package.json", "utf8"));
 
   // check v{version} tag exists
-  const { stdout: tagExists } = await execAsync(`git tag -l v${version}`);
+  const { stdout: tagExists } = await getExecOutput("git", [
+    "tag",
+    "-l",
+    `v${version}`,
+  ]);
+
   if (tagExists.trim()) {
     core.info(`v${version} tag already exists`);
     core.info("Skipping release");
@@ -31,10 +37,10 @@ const main = async () => {
   }
 
   // commit changes
-  await execAsync("git add .");
-  await execAsync(`git commit -m "Release v${version}"`);
-  await execAsync(`git tag v${version}`);
+  await exec("git", ["add", "."]);
+  await exec("git", ["commit", "-m", "Release v${version}"]);
+  await exec("git", ["tag", `v${version}`]);
   console.log(`New tag: v${version}`);
 };
 
-main();
+main().catch((error) => core.setFailed(error));
