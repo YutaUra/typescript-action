@@ -1,15 +1,15 @@
-# typescript-action [![ts](https://github.com/int128/typescript-action/actions/workflows/ts.yaml/badge.svg)](https://github.com/int128/typescript-action/actions/workflows/ts.yaml)
+# typescript-action [![ts](https://github.com/yutaura/typescript-action/actions/workflows/ts.yaml/badge.svg)](https://github.com/yutaura/typescript-action/actions/workflows/ts.yaml)
 
 This is a template of TypeScript action.
-Inspired from https://github.com/actions/typescript-action.
+Inspired from https://github.com/actions/typescript-action and https://github.com/int128/typescript-action.
 
 ## Features
 
 - Ready to develop with the minimum configs
-  - Prettier
-  - ESLint
+  - biome
   - tsconfig
-  - Jest
+  - vitest
+  - changeset
 - Automated continuous release
 - Keep consistency of generated files
 - Shipped with Renovate config
@@ -17,9 +17,6 @@ Inspired from https://github.com/actions/typescript-action.
 ## Getting Started
 
 Click `Use this template` to create a repository.
-
-An initial release `v0.0.0` is automatically created by GitHub Actions.
-You can see the generated files in `dist` directory on the tag.
 
 Then checkout your repository and test it. Node.js is required.
 
@@ -32,25 +29,17 @@ $ pnpm test
 
 Create a pull request for a change.
 
+you can use `changeset` to manage the version.
+
 ```console
 $ git checkout -b feature
+$ pnpm changeset add
 $ git commit -m 'Add feature'
 $ gh pr create -fd
 ```
 
-Once you merge a pull request, a new minor release (such as `v0.1.0`) is created.
-
-### Stable release
-
-When you want to create a stable release, change the major version in [release workflow](.github/workflows/release.yaml).
-
-```yaml
-- uses: int128/release-typescript-action@v1
-  with:
-    major-version: 1
-```
-
-Then a new stable release `v1.0.0` is created.
+Once you merge a pull request, pr to create a release will be created automatically.
+you can merge release pr, then a new release will be created.
 
 ## Specification
 
@@ -79,11 +68,6 @@ jobs:
 | `example` | example output |
 
 ## Development
-
-### Release workflow
-
-When a pull request is merged into main branch, a new minor release is created by GitHub Actions.
-See https://github.com/int128/release-typescript-action for details.
 
 ### Keep consistency of generated files
 
