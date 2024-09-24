@@ -51,4 +51,5 @@ jobs:
       - run: corepack enable pnpm
       - run: pnpm i
       - run: pnpm lint --fix
+      - run: pnpm tsc --noEmit
       - uses: int128/update-generated-files-action@6ac8557861efc7d8c34f4e3f182f9c39b26e6e76 # v2.53.0
