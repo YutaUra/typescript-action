@@ -1,6 +1,9 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "noEmit": true
   }
 }
