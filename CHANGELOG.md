@@ -1,5 +1,13 @@
 # typescript-action
 
+## 0.0.3
+
+### Patch Changes
+
+- dd9a138: Pin dependencies
+- e89b604: Update actions/checkout action to v4.2.0
+- d631d56: Update actions/setup-node digest to 0a44ba7
+
 ## 0.0.2
 
 ### Patch Changes
