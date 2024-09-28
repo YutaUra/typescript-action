@@ -1,5 +1,11 @@
 # typescript-action
 
+## 0.0.4
+
+### Patch Changes
+
+- 273b4a2: migrate ncc to tsup
+
 ## 0.0.3
 
 ### Patch Changes
